@@ -279,7 +279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 93642655}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: PatrolPath_Enemigo01
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -313,7 +313,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 140887819}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: PatrolPath_Enemigo01 (2)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -403,6 +403,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.9, y: 1, z: 0.9}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!1 &195198236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 195198237}
+  m_Layer: 7
+  m_Name: Eyes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &195198237
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195198236}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.01, y: 0.479, z: 0.612}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1503587325}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &290348280
 GameObject:
   m_ObjectHideFlags: 0
@@ -1013,7 +1044,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 447483283}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: PatrolPath_Enemigo01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -1051,9 +1082,9 @@ GameObject:
   - component: {fileID: 480314193}
   - component: {fileID: 480314194}
   - component: {fileID: 480314195}
-  m_Layer: 0
-  m_Name: Rigidbody
-  m_TagString: PlayerObj
+  m_Layer: 6
+  m_Name: Player
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1146,15 +1177,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 480314185}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 24.2, y: 1.15, z: 10.09}
+  m_LocalRotation: {x: 0, y: 0.60668266, z: -0, w: -0.79494417}
+  m_LocalPosition: {x: 36.53, y: 1.15, z: 10.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 330585546}
   - {fileID: 1577632863}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 285.3, z: 0}
 --- !u!54 &480314192
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1359,7 +1390,7 @@ GameObject:
   - component: {fileID: 955363718}
   - component: {fileID: 955363717}
   - component: {fileID: 955363716}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Visor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1851,7 +1882,10 @@ GameObject:
   - component: {fileID: 1503587322}
   - component: {fileID: 1503587327}
   - component: {fileID: 1503587326}
-  m_Layer: 0
+  - component: {fileID: 1503587329}
+  - component: {fileID: 1503587328}
+  - component: {fileID: 1503587330}
+  m_Layer: 7
   m_Name: Enemy01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1952,6 +1986,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 955363715}
+  - {fileID: 195198237}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1503587326
@@ -1996,6 +2031,63 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1503587328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503587321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e208de79a815c4593dd58b0141231c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStateController
+  TimeBeforeChase: 2
+  LookRotationSpeed: 5
+  ChaseSpeed: 5.5
+  LoseSightGracePeriod: 1
+  Agent: {fileID: 0}
+  PatrolScript: {fileID: 0}
+  Vision: {fileID: 0}
+--- !u!114 &1503587329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503587321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8af503a86661f544bc2869e5db0f820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyVision
+  EyesTransform: {fileID: 195198237}
+  Player: {fileID: 480314189}
+  PlayerTag: Player
+  DetectionRange: 12
+  ViewAngle: 120
+  DetectionMask:
+    serializedVersion: 2
+    m_Bits: 65
+--- !u!114 &1503587330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503587321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69163a8862fa244478eb3712f9e30783, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyVisorFeedback
+  VisorRenderer: {fileID: 955363717}
+  StateController: {fileID: 0}
+  PatrolColor: {r: 0, g: 1, b: 0, a: 1}
+  AlertColor: {r: 1, g: 0.5, b: 0, a: 1}
+  ChaseColor: {r: 1, g: 0, b: 0, a: 1}
+  ColorPropertyName: _BaseColor
 --- !u!1 &1577632862
 GameObject:
   m_ObjectHideFlags: 0
@@ -2039,7 +2131,7 @@ GameObject:
   - component: {fileID: 1626010887}
   - component: {fileID: 1626010886}
   - component: {fileID: 1626010885}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: LevelSurface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2228,7 +2320,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1941278277}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: PatrolPath_Enemigo01 (3)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}

@@ -64,6 +64,12 @@ public class EnemyPatrol : MonoBehaviour
         agent.SetDestination(Waypoints[index].position);
     }
 
+    public void ResumePatrol()
+    {
+        isWaiting = false;
+        GoToWaypoint(currentWaypointIndex);
+    }
+
     private void AdvanceWaypoint()
     {
         if (LoopPatrol)

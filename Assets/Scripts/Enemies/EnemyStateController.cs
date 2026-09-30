@@ -1,16 +1,154 @@
 using UnityEngine;
+using UnityEngine.AI;
 
+public enum EnemyState
+{
+    Patrol,
+    Alert,
+    Chase
+}
+
+[RequireComponent(typeof(NavMeshAgent))]
 public class EnemyStateController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [Header("Alerta")]
+    public float TimeBeforeChase = 2f;
+    public float LookRotationSpeed = 5f;
+
+    [Header("Persecución")]
+    public float ChaseSpeed = 5.5f;
+    public float LoseSightGracePeriod = 1f;
+
+    [Header("Referencias")]
+    public NavMeshAgent Agent;
+    public EnemyPatrol PatrolScript;
+    public EnemyVision Vision;
+
+    public EnemyState CurrentState { get; private set; } = EnemyState.Patrol;
+
+    public event System.Action<EnemyState> OnStateChanged;
+
+    private float alertTimer;
+    private float loseSightTimer;
+
+    void Awake()
     {
-        
+        if (Agent == null) Agent = GetComponent<NavMeshAgent>();
+        if (PatrolScript == null) PatrolScript = GetComponent<EnemyPatrol>();
+        if (Vision == null) Vision = GetComponent<EnemyVision>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        switch (CurrentState)
+        {
+            case EnemyState.Patrol:
+                TickPatrol();
+                break;
+            case EnemyState.Alert:
+                TickAlert();
+                break;
+            case EnemyState.Chase:
+                TickChase();
+                break;
+        }
+    }
+
+    private void TickPatrol()
+    {
+        if (Vision.CanSeePlayer)
+        {
+            EnterAlert();
+        }
+    }
+
+    private void TickAlert()
+    {
+        if (Vision.CanSeePlayer)
+        {
+            loseSightTimer = 0f;
+            FaceTarget(Vision.Player.position);
+
+            alertTimer -= Time.deltaTime;
+            if (alertTimer <= 0f)
+            {
+                EnterChase();
+            }
+        }
+        else
+        {
+            loseSightTimer += Time.deltaTime;
+            if (loseSightTimer >= LoseSightGracePeriod)
+            {
+                EnterPatrol();
+            }
+        }
+    }
+
+    private void TickChase()
+    {
+        Agent.SetDestination(Vision.LastKnownPlayerPosition);
+
+        if (Vision.CanSeePlayer)
+        {
+            loseSightTimer = 0f;
+        }
+        else
+        {
+            loseSightTimer += Time.deltaTime;
+            if (loseSightTimer >= LoseSightGracePeriod)
+            {
+                EnterPatrol();
+            }
+        }
+    }
+
+    private void FaceTarget(Vector3 targetPosition)
+    {
+        Vector3 direction = targetPosition - transform.position;
+        direction.y = 0f;
+        if (direction.sqrMagnitude < 0.001f) return;
+
+        Quaternion lookRotation = Quaternion.LookRotation(direction.normalized);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, LookRotationSpeed * Time.deltaTime);
+    }
+
+    private void ChangeState(EnemyState newState)
+    {
+        CurrentState = newState;
+        OnStateChanged?.Invoke(newState);
+    }
+
+    private void EnterPatrol()
+    {
+        ChangeState(EnemyState.Patrol);
+        Agent.speed = PatrolScript.PatrolSpeed;
+
+        if (PatrolScript != null)
+        {
+            PatrolScript.enabled = true;
+            PatrolScript.ResumePatrol();
+        }
+    }
+
+    private void EnterAlert()
+    {
+        ChangeState(EnemyState.Alert);
+        alertTimer = TimeBeforeChase;
+        loseSightTimer = 0f;
+
+        if (PatrolScript != null)
+        {
+            PatrolScript.enabled = false;
+        }
+
+        Agent.ResetPath();
+    }
+
+    private void EnterChase()
+    {
+        ChangeState(EnemyState.Chase);
+        loseSightTimer = 0f;
+        Agent.speed = ChaseSpeed;
     }
 }
