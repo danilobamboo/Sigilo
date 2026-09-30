@@ -5,6 +5,7 @@ public enum EnemyState
 {
     Patrol,
     Alert,
+    Investigate,
     Chase
 }
 
@@ -14,6 +15,10 @@ public class EnemyStateController : MonoBehaviour
     [Header("Alerta")]
     public float TimeBeforeChase = 2f;
     public float LookRotationSpeed = 5f;
+
+    [Header("Investigar (ruido)")]
+    public float InvestigateSpeed = 4.5f;
+    public float InvestigateWaitTime = 3f;
 
     [Header("Persecución")]
     public float ChaseSpeed = 5.5f;
@@ -30,6 +35,9 @@ public class EnemyStateController : MonoBehaviour
 
     private float alertTimer;
     private float loseSightTimer;
+    private Vector3 investigateTarget;
+    private float investigateWaitTimer;
+    private bool hasArrivedAtInvestigateTarget;
 
     void Awake()
     {
@@ -47,6 +55,9 @@ public class EnemyStateController : MonoBehaviour
                 break;
             case EnemyState.Alert:
                 TickAlert();
+                break;
+            case EnemyState.Investigate:
+                TickInvestigate();
                 break;
             case EnemyState.Chase:
                 TickChase();
@@ -82,6 +93,31 @@ public class EnemyStateController : MonoBehaviour
             {
                 EnterPatrol();
             }
+        }
+    }
+
+    private void TickInvestigate()
+    {
+        if (Vision.CanSeePlayer)
+        {
+            EnterChase();
+            return;
+        }
+
+        if (!hasArrivedAtInvestigateTarget)
+        {
+            if (!Agent.pathPending && Agent.remainingDistance <= Agent.stoppingDistance)
+            {
+                hasArrivedAtInvestigateTarget = true;
+                investigateWaitTimer = InvestigateWaitTime;
+            }
+            return;
+        }
+
+        investigateWaitTimer -= Time.deltaTime;
+        if (investigateWaitTimer <= 0f)
+        {
+            EnterPatrol();
         }
     }
 
@@ -150,5 +186,23 @@ public class EnemyStateController : MonoBehaviour
         ChangeState(EnemyState.Chase);
         loseSightTimer = 0f;
         Agent.speed = ChaseSpeed;
+    }
+
+    public void EnterInvestigate(Vector3 targetPosition)
+    {
+        if (CurrentState == EnemyState.Alert || CurrentState == EnemyState.Chase) return;
+
+        investigateTarget = targetPosition;
+        hasArrivedAtInvestigateTarget = false;
+
+        ChangeState(EnemyState.Investigate);
+
+        if (PatrolScript != null)
+        {
+            PatrolScript.enabled = false;
+        }
+
+        Agent.speed = InvestigateSpeed;
+        Agent.SetDestination(investigateTarget);
     }
 }

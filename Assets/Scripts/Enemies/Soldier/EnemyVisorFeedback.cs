@@ -6,9 +6,9 @@ public class EnemyVisorFeedback : MonoBehaviour
     public Renderer VisorRenderer;
     public EnemyStateController StateController;
 
-    [Header("Colores por estado")]
     public Color PatrolColor = Color.green;
     public Color AlertColor = new Color(1f, 0.5f, 0f);
+    public Color InvestigateColor = new Color(1f, 0.5f, 0f);
     public Color ChaseColor = Color.red;
 
     [Header("Shader")]
@@ -51,10 +51,10 @@ public class EnemyVisorFeedback : MonoBehaviour
         {
             EnemyState.Patrol => PatrolColor,
             EnemyState.Alert => AlertColor,
+            EnemyState.Investigate => InvestigateColor,
             EnemyState.Chase => ChaseColor,
             _ => Color.white
         };
-
         VisorRenderer.GetPropertyBlock(propertyBlock);
         propertyBlock.SetColor(colorPropertyID, targetColor);
         VisorRenderer.SetPropertyBlock(propertyBlock);
