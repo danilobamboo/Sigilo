@@ -553,6 +553,7 @@ GameObject:
   - component: {fileID: 90859014}
   - component: {fileID: 90859013}
   - component: {fileID: 90859012}
+  - component: {fileID: 90859021}
   m_Layer: 7
   m_Name: Enemy02
   m_TagString: Untagged
@@ -759,6 +760,25 @@ Transform:
   - {fileID: 1593296963}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &90859021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90859011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb8532526873c154da5e9efa41b11699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyCatchPlayer
+  CatchDistance: 1.5
+  OnlyWhileChasing: 1
+  CaughtText: {fileID: 664197675}
+  Message: FOUND YOU
+  RestartDelay: 2
+  StateController: {fileID: 0}
+  Vision: {fileID: 0}
 --- !u!1 &93642654
 GameObject:
   m_ObjectHideFlags: 0
@@ -2705,7 +2725,7 @@ Transform:
   m_GameObject: {fileID: 480314185}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 74.94, y: 0.68, z: 13.83}
+  m_LocalPosition: {x: 39.36, y: 0.68, z: 13.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3593,7 +3613,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -3625,7 +3645,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -150.43411, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3655,7 +3675,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -75.3, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &716636605
@@ -7209,6 +7229,7 @@ GameObject:
   - component: {fileID: 1244659393}
   - component: {fileID: 1244659392}
   - component: {fileID: 1244659391}
+  - component: {fileID: 1244659400}
   m_Layer: 7
   m_Name: Enemy04
   m_TagString: Untagged
@@ -7415,6 +7436,25 @@ Transform:
   - {fileID: 1038148725}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1244659400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244659390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb8532526873c154da5e9efa41b11699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyCatchPlayer
+  CatchDistance: 1.5
+  OnlyWhileChasing: 1
+  CaughtText: {fileID: 664197675}
+  Message: FOUND YOU
+  RestartDelay: 2
+  StateController: {fileID: 0}
+  Vision: {fileID: 0}
 --- !u!1 &1257973727
 GameObject:
   m_ObjectHideFlags: 0
@@ -8770,6 +8810,7 @@ GameObject:
   - component: {fileID: 1503587329}
   - component: {fileID: 1503587328}
   - component: {fileID: 1503587330}
+  - component: {fileID: 1503587331}
   m_Layer: 7
   m_Name: Enemy01
   m_TagString: Untagged
@@ -8976,6 +9017,25 @@ MonoBehaviour:
   InvestigateColor: {r: 1, g: 0.5, b: 0, a: 1}
   ChaseColor: {r: 1, g: 0, b: 0, a: 1}
   ColorPropertyName: _BaseColor
+--- !u!114 &1503587331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503587321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb8532526873c154da5e9efa41b11699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyCatchPlayer
+  CatchDistance: 1.5
+  OnlyWhileChasing: 1
+  CaughtText: {fileID: 664197675}
+  Message: FOUND YOU
+  RestartDelay: 2
+  StateController: {fileID: 0}
+  Vision: {fileID: 0}
 --- !u!1 &1515872356
 GameObject:
   m_ObjectHideFlags: 0
@@ -10743,6 +10803,7 @@ GameObject:
   - component: {fileID: 1736958376}
   - component: {fileID: 1736958374}
   - component: {fileID: 1736958375}
+  - component: {fileID: 1736958383}
   m_Layer: 7
   m_Name: Enemy06
   m_TagString: Untagged
@@ -10949,6 +11010,25 @@ Transform:
   - {fileID: 1515872357}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1736958383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736958373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb8532526873c154da5e9efa41b11699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyCatchPlayer
+  CatchDistance: 1.5
+  OnlyWhileChasing: 1
+  CaughtText: {fileID: 664197675}
+  Message: FOUND YOU
+  RestartDelay: 2
+  StateController: {fileID: 0}
+  Vision: {fileID: 0}
 --- !u!1 &1745110577
 GameObject:
   m_ObjectHideFlags: 0
@@ -11505,6 +11585,7 @@ GameObject:
   - component: {fileID: 1853062311}
   - component: {fileID: 1853062310}
   - component: {fileID: 1853062309}
+  - component: {fileID: 1853062318}
   m_Layer: 7
   m_Name: Enemy05
   m_TagString: Untagged
@@ -11711,6 +11792,25 @@ Transform:
   - {fileID: 419978188}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1853062318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853062308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb8532526873c154da5e9efa41b11699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyCatchPlayer
+  CatchDistance: 1.5
+  OnlyWhileChasing: 1
+  CaughtText: {fileID: 664197675}
+  Message: FOUND YOU
+  RestartDelay: 2
+  StateController: {fileID: 0}
+  Vision: {fileID: 0}
 --- !u!1 &1853350421
 GameObject:
   m_ObjectHideFlags: 0
@@ -13464,6 +13564,7 @@ GameObject:
   - component: {fileID: 2070548408}
   - component: {fileID: 2070548407}
   - component: {fileID: 2070548406}
+  - component: {fileID: 2070548415}
   m_Layer: 7
   m_Name: Enemy03
   m_TagString: Untagged
@@ -13670,6 +13771,25 @@ Transform:
   - {fileID: 850653373}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &2070548415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070548405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb8532526873c154da5e9efa41b11699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyCatchPlayer
+  CatchDistance: 1.5
+  OnlyWhileChasing: 1
+  CaughtText: {fileID: 664197675}
+  Message: FOUND YOU
+  RestartDelay: 2
+  StateController: {fileID: 0}
+  Vision: {fileID: 0}
 --- !u!1 &2081889902
 GameObject:
   m_ObjectHideFlags: 0
